@@ -1,0 +1,29 @@
+package carpool;
+import java.utili.Scanner;
+public class CarPool {
+  public static void main(String[] args) {
+    Scanner angelika = new Scanner (System.in);
+    double dist, cost, mile, parking, toll;
+    
+    System.out.print("Enter total miles driven per day: \n");
+    dist=angelika.nextDouble();
+    
+    System.out.print(Enter cost of gas: \n");
+    cost=angelika.nextDouble();
+    
+    System.out.print("Enter parking fees: \n");
+    parking=angelika.nextDOuble();
+    
+    System.out.print("Enter toll fees: \n");
+    toll=angelika.nextDouble();
+    
+    System.out.print("Enter toll fees: \n");
+    toll=angelika.nextDOuble();
+    
+    System.out.println("By carpooling you can save: "+CarPool( dist, cost, mile, parking, toll)+"$$ Wow!!!\n");
+  }
+  public static double CarPool(double dist, double cost, double mile, double parking, double toll){
+  
+  return cost*dist/mile+parking+toll;
+  }
+}
