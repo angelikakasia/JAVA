@@ -1,0 +1,81 @@
+import javax.swing.JOptionPane;
+
+
+public class Rectangle {
+    private static double Height;
+    private static double Width;
+    private static double RecArea;
+    public Rectangle(){
+        this.Height=0;
+        this.Width=0;
+        this.RecArea=0;
+    }
+    public Rectangle(double h, double w)
+    {
+        this.Height=h;
+        this.Width=w;
+        this.RecArea=0;
+    }
+    public void setHeight(double Height){
+        this.Height=Height;
+    }
+    public void setWidth(double Width){
+        this.Width=Width;
+    }
+    public void setRecArea(double RecArea){
+        this.RecArea=RecArea;
+    }
+    public double getHeight(){
+        return Height;
+    }
+    public double getWidth(){
+        return Width;
+    }
+    public double getRecArea(){
+        return RecArea;
+    }
+    public void CalcRecArea(){
+        if(this.Height>100 || this.Width >100){
+            JOptionPane.showMessageDialog(null, "Too big");
+        }
+        else{
+            this.RecArea=this.Height* this.Width;
+        }
+    }  
+}
+
+
+package rectapp;
+
+import javax.swing.JOptionPane;
+
+
+public class RectApp {
+
+   
+    public static void main(String[] args) {
+       double h;
+       double height;
+       double width;
+       Rectangle r1= new Rectangle();
+       height=Double.parseDouble(JOptionPane.showInputDialog("Enter the rectangle Height: "));
+       r1.setHeight(height);
+       width=Double.parseDouble(JOptionPane.showInputDialog("Enter the rectangle Height: "));
+       r1.setWidth(width);
+       r1.CalcRecArea();
+       JOptionPane.showMessageDialog(null, "The R1 area is : "+r1.getRecArea());
+       r1.getHeight();
+       r1.setHeight(15);
+       r1.CalcRecArea();
+       JOptionPane.showMessageDialog(null,"The R1 after increase is " +r1.getRecArea());
+       
+       //seatlle
+       Rectangle r2 = new Rectangle(15.5, 54.3);
+       r2.CalcRecArea();
+       JOptionPane.showMessageDialog(null,"The R2  is " +r2.getRecArea());
+       
+       
+       
+    }
+    
+}
