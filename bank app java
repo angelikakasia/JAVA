@@ -1,0 +1,90 @@
+
+
+package bankapp;
+import javax.swing.JOptionPane;
+
+
+public class BankAccount {
+    private String Name;
+    private double Balance;
+    
+    public void BankAccount(String n){
+        this.Name=n;
+    }
+    public void BankAccount(String n, double b){
+        this.Name=n;
+        this.Balance=b; 
+    }
+   
+    public void Deposit(){
+        double d =Double.parseDouble(JOptionPane.showInputDialog(" How much do you want to deposit:   "));
+            if(d<1000){
+                this.Balance=this.Balance+d;
+                JOptionPane.showMessageDialog(null, " Your balance after deposit is " + this.Balance);
+            }
+            else if(d>1001){
+                JOptionPane.showMessageDialog(null, "You can't deposit more than 1000");
+            }    
+    }
+     public void Withdraw(){
+         double w= Double.parseDouble(JOptionPane.showInputDialog(" How much do you want to withdraw: "));
+         if(w<=this.Balance){
+            this.Balance=this.Balance-w;
+            JOptionPane.showMessageDialog(null, " Your balance after withdraw is is " + this.Balance);
+        }
+         else if(w>this.Balance){
+            JOptionPane.showMessageDialog(null, " You can't withdraw more than it is on you balance.");
+        }
+    }
+    public void setBalance(double sb){
+        //sb=Double.parseDouble(JOptionPane.showInputDialog(" Set your balance: "));
+        this.Balance=sb;
+     
+    }
+    public String getName(){
+       return this.Name;
+    }
+    public double getBalance(){
+      return this.Balance;
+    }
+}
+
+
+
+package bankapp;
+import javax.swing.JOptionPane;
+public class BankApp {
+
+    
+    public static void main(String[] args) {
+        //instance #1
+        String n;
+        double b;
+        JOptionPane.showMessageDialog(null, "-----------     WELCOME TO THE SZYMANOWSKA BANK    ---------- " );
+         n = JOptionPane.showInputDialog(" Enter the account name:  ");
+         b = Double.parseDouble(JOptionPane.showInputDialog(" Enter your balance: "));
+        BankAccount a1 = new BankAccount();
+        a1.BankAccount(n,b);
+        n =a1.getName();
+        b =a1.getBalance();
+        JOptionPane.showMessageDialog(null, "  Your name is "+ a1.getName() + " Your balance is "+ a1.getBalance());
+          
+        //instance #2
+        double b1;
+        BankAccount a2 = new BankAccount();
+        a2.BankAccount(n);
+        JOptionPane.showMessageDialog(null, "Welcome back   "+ a1.getName() );
+        b1=Double.parseDouble(JOptionPane.showInputDialog(" Set your balance "));
+        
+        a2.setBalance(b1);
+        b1=a2.getBalance();
+        JOptionPane.showMessageDialog(null, "Your new balance is set to "+ a2.getBalance());
+      
+        a2.Deposit();
+        a2.Withdraw();
+        
+        JOptionPane.showMessageDialog(null, " Your balance after the deposit and the withdraw is  " + a2.getBalance());
+        JOptionPane.showMessageDialog(null, " ----- THANK YOU " + a1.getName() + " FOR USING SZYMANOWSKA BANK ------  " );
+    }
+}
+    
