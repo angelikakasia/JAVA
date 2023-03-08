@@ -1,0 +1,104 @@
+
+package gradebook;
+
+
+public class Student {
+    private String Name;
+    private double TotalGrade;
+  
+    //public Student(){}
+    public Student (String n)
+    {
+        this.Name=n;
+        this.TotalGrade=0;
+    }
+    public void setName (String n)
+    { this.Name =n;}
+    public String getName()
+    {
+        return this.Name;
+    }
+    public void AddGrade(double g) //AddGrade=AddAverage
+    {
+        this.TotalGrade+=g;
+    }
+    public double getGrade(){
+    
+        return this.TotalGrade;
+    }
+    public double CalcAverage()
+    {
+        
+        this.TotalGrade=this.TotalGrade/10;
+        return this.TotalGrade;
+    }
+    
+    public String getletterGrade() // getLetterGrade= GetLetterAverage
+    {
+        
+        String letterGrade;
+        double g = this.TotalGrade; //convert g numeric grade to a string type A,B etc
+        if (g>=100)
+            letterGrade="A+";
+        else if (g>=93)
+            letterGrade="A";
+        else if (g>=90 && g<93)
+            letterGrade="A-";
+        else if (g>=87 && g<90)
+            letterGrade="B+";
+        else if (g>=83 && g<87)
+            letterGrade="B";
+        else if (g>=80 && g<83)
+            letterGrade="B-";
+        else if (g>=77 && g<80)
+            letterGrade="C+";
+        else if (g>=73 && g<77)
+            letterGrade="C";
+        else if (g>=70 && g<73)
+            letterGrade="C-";
+        else if (g>=67 && g<70)
+            letterGrade="D+";
+        else if (g>=63 && g<67)
+            letterGrade="D";
+        else if (g>=60)
+            letterGrade="D-";
+       
+        else 
+            letterGrade="F";
+       
+        return letterGrade;
+        
+    }
+ 
+}
+
+
+package gradebook;
+import java.util.Scanner;
+
+public class GradeBook {
+
+   
+    public static void main(String[] args) {
+       Scanner sc= new Scanner(System.in);
+       System.out.println( "Enter student's name: ");
+       String name= sc.nextLine();
+       Student student= new Student(name);
+       double grade=0;
+       int i=1;
+       while (i<=10)
+       {
+           
+           System.out.println("Enter grade # " + i + "  :");
+           grade =sc.nextDouble();
+           student.AddGrade(grade);
+           System.out.println( "Student's current grade is : " + student.getGrade());
+           i++;
+       }
+       System.out.println("Student's Total Grade is : " + student.getGrade());
+       System.out.println("Student's Average Grade is : " + student.CalcAverage());
+       System.out.println( student.getName()+ "'s FINAL Letter Grade is : " + student.getletterGrade());
+    
+    }
+    
+}
