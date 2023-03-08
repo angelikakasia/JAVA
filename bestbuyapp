@@ -1,0 +1,98 @@
+public class BestBuy {
+    private String StoreName;
+    private double TotSales;
+    private String Message;
+  
+    
+     BestBuy (String s)
+    {
+        this.StoreName=s;
+        this.TotSales=0;
+    }
+    void AccumSales (double s)
+    {
+        this.TotSales+=s;
+    }
+    private void MakeMessage()
+    {
+        if (this.TotSales>10000)
+        {
+            this.Message=" Good Job!!! ";
+        }
+        else if(this.TotSales>5000)
+        {
+            this.Message= " Keep The Good Work ";
+        }
+        else if(this.TotSales>1000)
+        {
+            this.Message= " You Need To Work More ";
+        }
+        else 
+        {
+            this.Message= " Close the Store ";
+        }
+    
+    }
+    
+    
+    String getStoreName()
+    {
+        return this.StoreName;
+    }
+    double getTotSales ()
+    {
+        return this.TotSales;
+    }
+    String getMessage(){
+        return this.Message;
+    }
+    
+    void PrintTotalSales ()
+    {
+        this.MakeMessage();
+        System.out.println("    Store Name: " + this.getStoreName());
+        System.out.println("    Total Sales: " + this.getTotSales());
+        System.out.println( this.getMessage());
+    
+    }
+    
+}
+
+
+
+
+package week7;
+import java.util.Scanner;
+
+
+public class Week7 {
+
+  
+    public static void main(String[] args)
+    {   System.out.println("      Sales Analysis");
+        
+        String name;
+        double sales=0;
+        int months;
+        int c=1;
+        Scanner sc = new Scanner (System.in);
+        System.out.println("          BestBuy Sales Report       ");
+        System.out.println("                 ==============================                        ");
+        System.out.print("Enter Store Location ===> ");
+        name =sc.next();
+        
+        BestBuy s1 =new BestBuy (name);
+        System.out.print("How many months you want ===> ");
+        months=sc.nextInt();
+        for (int x=1; x<=months; x++)
+        {
+            System.out.print("Enter the amount for month  # " +x+ " ====>  ");
+            sales=sc.nextDouble();
+            s1.AccumSales(sales);
+        }
+        s1.PrintTotalSales();
+       
+                
+       
+    }
+}
