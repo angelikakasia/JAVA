@@ -1,0 +1,44 @@
+package apr12;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.PrintWriter;
+import java.util.Scanner;
+import java.io.IOException;
+public class Apr12 {
+    static FileWriter myFile;
+    static BufferedWriter realFile;
+    static PrintWriter pw;
+    static Scanner sc;
+    static int NumOfEmp;
+    static String EmpName;
+    static int EmpAge;
+    static String EmpPosition;
+    public static void main(String[] args) {
+        try{
+        sc=new Scanner(System.in);
+        myFile =new FileWriter("employee.csv",true);
+        realFile=new BufferedWriter(myFile);
+        pw=new PrintWriter(realFile);
+        System.out.print("How many employees do you want ? ");
+        NumOfEmp=sc.nextInt();
+        for(int i=0; i<NumOfEmp; i++)
+        {
+            sc.nextLine();
+            System.out.print(" Enter employee Name ==> ");
+            EmpName=sc.nextLine();
+            System.out.print(" Enter employee Age ==> ");
+            EmpAge=sc.nextInt();
+            System.out.print ("Enter employee Position ==> ");
+            EmpPosition=sc.next();
+            pw.write(EmpName+" "+EmpAge+" "+EmpPosition +"\n");
+        }
+        pw.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+       
+    }
+    
+}
