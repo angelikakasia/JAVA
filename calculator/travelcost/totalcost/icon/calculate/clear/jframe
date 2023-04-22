@@ -1,0 +1,158 @@
+package trcostapp; //part1
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class TrCostApp {
+    static JFrame f;
+    static JPanel p1;
+    static JLabel l0;//title
+    static JLabel l1;//miles to drive
+    static JLabel l2;//mpg
+    static JLabel l3;//gas price
+    static JLabel l4;//pking cost
+    static JLabel l5;//tolls
+    static JLabel l6;
+    static JLabel msg;//result
+    static JTextField t1;//miles to drive
+    static JTextField t2;//mpg
+    static JTextField t3;//gas price
+    static JTextField t4;//pking cost
+    static JTextField t5;//tolls
+    static JTextField msg1;//result
+    static JButton b1;//calculate
+    static JButton b2;//clear
+
+    public static void main(String[] args) {
+        f=new JFrame("Travel Cost App ver.2.0");
+        Image icon=Toolkit.getDefaultToolkit().getImage("car.png");
+        f.setIconImage(icon);
+        p1=new JPanel();
+        p1.setLayout(null);
+        l0=new JLabel("TRAVEL COST APP", JLabel.CENTER);
+        l0.setBounds(90, 15, 240, 30);
+        l0.setFont(new Font("Proxima Nova", Font.BOLD, 22));
+        l0.setForeground(Color.blue);
+        
+        l1=new JLabel("Miles to Drive:");
+        l1.setBounds(50, 65, 150, 30);
+        l2=new JLabel("Miles per Gallon:");
+        l2.setBounds(37, 100, 150, 30);
+        l3=new JLabel("Gasoline Price:");
+        l3.setBounds(45, 140, 150, 30);
+        l4=new JLabel("Parking Cost:");
+        l4.setBounds(55, 180, 150, 30);
+        l5=new JLabel("Tolls Cost:");
+        l5.setBounds(72, 220, 150, 30);
+        l6= new JLabel("Result:");
+        l6.setBounds(90, 340, 250, 30);
+                
+        t1=new JTextField(15);
+        t1.setBounds(140, 60, 130, 30);
+        t2=new JTextField(15);
+        t2.setBounds(140, 100, 130, 30);
+        t3=new JTextField(15);
+        t3.setBounds(140, 140, 130, 30);
+        t4=new JTextField(15);
+        t4.setBounds(140, 180, 130, 30);
+        t5=new JTextField(15);
+        t5.setBounds(140, 220, 130, 30);
+        
+        b1=new JButton("Calculate");
+        b1.addActionListener(new Calc());
+        b1.setBounds(60, 276, 110, 30);
+        b2=new JButton("Clear");
+        b2.addActionListener(new Clear());
+        b2.setBounds(200, 276, 110, 30);
+        
+        msg=new JLabel("");
+        msg.setBounds(142, 340, 250, 30);
+        msg1=new JTextField(15);
+        msg1.setBounds(140, 340, 130, 30);
+        msg1.setBackground(Color.green);
+        
+        p1.add(l0);
+        p1.add(l1);
+        p1.add(l2);
+        p1.add(l3);
+        p1.add(l4);
+        p1.add(l5);
+        p1.add(l6);
+        p1.add(t1);
+        p1.add(t2);
+        p1.add(t3);
+        p1.add(t4);
+        p1.add(t5);
+        p1.add(b1);
+        p1.add(b2);
+        p1.add(msg);
+        p1.add(msg1);
+        
+        f.add(p1);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setSize(420, 460);
+        f.setResizable(false);
+        f.setLocation(25, 100);
+        f.setVisible(true);
+    }
+    
+    public static class Calc implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            double n1, n2, n3, n4, n5, r;
+            double num1=Double.parseDouble(t1.getText());
+            double num2=Double.parseDouble(t2.getText());
+            double num3=Double.parseDouble(t3.getText());
+            double num4=Double.parseDouble(t4.getText());
+            double num5=Double.parseDouble(t5.getText());
+            TravelCost c=new TravelCost(num1, num2, num3, num4, num5);
+            c.CalCost();
+            msg.setText("$"+c.getTotalCost()+0);
+        }
+    }
+    public static class Clear implements ActionListener
+    {
+         @Override
+        public void actionPerformed(ActionEvent e) {
+            t1.setText("");
+            t2.setText("");
+            t3.setText("");
+            t4.setText("");
+            t5.setText("");
+            msg.setText("");
+            msg1.setText("");
+        }
+    } 
+}
+  //part 2 class TRavelCost  
+package trcostapp;
+public class TravelCost {
+     private double MtoDrive;
+    private double MperG;
+    private double GasPrice;
+    private double ParkingCost;
+    private double TollCost;
+    private double TotalCost;
+
+TravelCost(double n1, double n2, double n3, double n4, double n5)
+    {
+        this.MtoDrive=n1;
+        this.MperG=n2;
+        this.GasPrice=n3;
+        this.ParkingCost=n4;
+        this.TollCost=n5;
+    }
+void CalCost()
+    {
+        this.TotalCost=this.MtoDrive/this.MperG*this.GasPrice+this.ParkingCost+this.TollCost;
+    }
+double getTotalCost()
+    {
+        this.CalCost();
+        return this.TotalCost;
+    }
+}
+
+
