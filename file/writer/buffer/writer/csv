@@ -1,0 +1,157 @@
+# JAVA//part 1
+JAVA FOR BEGINNERS
+package hom4;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.util.Scanner;
+import java.sql.*;
+
+public class Hom4 {
+    static FileWriter myFile;
+    static BufferedWriter realfile;
+    static PrintWriter pw;
+    static Scanner sc;
+    static ResultSet rs;
+ 
+    public static void main(String[] args) {
+     try
+        {
+            
+            sc=new Scanner(System.in);
+            myFile=new FileWriter("employee.csv",true);
+            realfile=new BufferedWriter(myFile);
+            pw= new PrintWriter(realfile);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Driver connected");
+            Connection con=DriverManager.getConnection("jdbc:mysql://yourlink/yourlibrary","login","password!");
+                   
+         
+          
+         System.out.println("database connected");
+         Statement stmt=con.createStatement();
+         ResultSet rs=stmt.executeQuery("select * from employee");
+         Employee emp=new Employee();
+         while(rs.next())
+         {
+          
+          emp.setId(rs.getInt(1));
+          emp.setLname(rs.getString(2));
+          emp.setFname(rs.getString(3));
+          emp.setAddress1(rs.getString("EmpAddress1"));
+          emp.setAddress2(rs.getString("EmpAddress2"));
+          emp.setCity(rs.getString(6));
+          emp.setState(rs.getString(7));
+          emp.setDOB(rs.getString(8));
+          emp.setSalary(rs.getDouble(9));
+          System.out.println(emp.toString());
+          pw.write( emp.getId()+","+ " "+emp.getLname()+","+" "+emp.getFname()+","+" "+emp.getAddress1()+","+" "+emp.getAddress2()+","+" "+emp.getCity()+","+" " +emp.getState()+","+" "+emp.getDOB()+ ","+" "+emp.getSalary()+","+" \n");
+         }
+         pw.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("class not found");
+        }
+    }
+}
+
+//part2 class
+
+
+package hom4;
+public class Employee { 
+    protected int id;
+    protected String lname;
+    protected String fname;
+    protected String address1;
+    protected String address2;
+    protected String city;
+    protected String state;
+    protected String DOB;
+    protected double salary;
+
+    public Employee() {}
+
+    public Employee(String lname, String fname, String address1, String address2, String city, String state, String DOB, double salary) {
+        super();
+        this.lname = lname;
+        this.fname = fname;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.city = city;
+        this.state = state;        
+        this.DOB = DOB;
+        this.salary = salary;
+    }
+    public Employee(int id, String lname, String fname, String address1, String address2, String city, String state, String DOB, double salary) {
+        super();
+        this.id = id;
+        this.lname = lname;
+        this.fname = fname;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.city = city;
+        this.state = state;        
+        this.DOB = DOB;
+        this.salary = salary;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getLname() {
+        return lname;
+    }    
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+    public String getFname() {
+        return fname;
+    }
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+    public String getAddress1() {
+        return address1;
+    }
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+    public String getAddress2() {
+        return address2;
+    }
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+   public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
+    public String getState() {
+        return state;
+    }
+    public void setState(String state) {
+        this.state = state;
+    }
+   public String getDOB() {
+        return DOB;
+    }
+    public void setDOB(String DOB) {
+        this.DOB = DOB;
+    }
+    public double getSalary() {
+        return salary;
+    }
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+}    
+
