@@ -1,0 +1,113 @@
+package guilayout;
+import java.awt.*;
+import javax.swing.*;
+import view.*;
+
+public class GUILayout {
+    JFrame fr;
+    JPanel p;
+    JPanel p1;
+    JPanel p2;
+    
+    public GUILayout() {
+        fr=new JFrame("GUI LAYOUT PRACTICE");
+        p=new JPanel(new BorderLayout());
+        p1=new flayout().getPanel();
+        p2=new glayout().getPanel();
+        
+        p.add(p1, BorderLayout.NORTH);
+        p.add(p2, BorderLayout.SOUTH);
+        
+        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fr.add(p);
+        fr.setSize(500, 200);
+        fr.setVisible(true);
+        
+}
+    public static void main(String[] args) {
+        new GUILayout();
+    }
+    
+}
+//classes added to the view package
+package view;
+import java.awt.*;
+import javax.swing.*;
+
+public class flayout {
+    //JFrame f1;//cannot add frame to frame
+    JPanel p1;
+    JButton b1;
+    JButton b2;
+    JButton b3;
+    JButton b4;
+    JButton b5;
+    public flayout()
+    {
+        //f1=new JFrame("FlowLayout Sample");
+        p1=new JPanel(new FlowLayout());
+        b1=new JButton("Button 1");
+        b2=new JButton("Button 2");
+        b3=new JButton("Button 3");
+        b4=new JButton("Button 4");
+        b5=new JButton("Button 5");
+        p1.add(b1);
+        p1.add(b2);
+        p1.add(b3);
+        p1.add(b4);
+        p1.add(b5);
+        
+        //f1.add(p1);
+        //f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //f1.setSize(300,300);
+        //f1.setVisible(true);
+        
+        
+    }
+    public JPanel getPanel(){
+        return p1;
+    }
+}
+_______________________________________________________________________________
+
+package view;
+import java.awt.*;
+import javax.swing.*;
+
+public class glayout {
+    //JFrame f2;
+    JPanel p2;
+    JButton b6;
+    JButton b7;
+    JButton b8;
+    JButton b9;
+    JButton b10;
+    
+    public glayout()//constructor
+    {
+        //f2=new JFrame("GridLayout Sample");
+        p2=new JPanel(new GridLayout(3,2));
+        b6=new JButton("Button 6");
+        b7=new JButton("Button 7");
+        b8=new JButton("Button 8");
+        b9=new JButton("Button 9");
+        b10=new JButton("Button 10");
+  
+        p2.add(b6);
+        p2.add(b7);
+        p2.add(b8);
+        p2.add(b9);
+        p2.add(b10);
+        
+        
+        //f2.add(p2);
+        //f2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //f2.setSize(300,100);
+        //f2.setVisible(true);
+        
+    }   
+    public JPanel getPanel(){
+        return p2;
+    }
+    
+}
